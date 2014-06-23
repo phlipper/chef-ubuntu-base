@@ -1,0 +1,11 @@
+[1;31m***************************************************
+* UNAUTHORIZED ACCESS OF THIS SYSTEM IS FORBIDDEN *
+***************************************************[0m
+
+Hostname:           <%= node["hostname"] %>
+OS:                 <%= node["platform"] %> <%= node["platform_version"] %> (<%= node["kernel"]["machine"] %>)
+Kernel:             <%= node["kernel"]["name"] %> <%= node["kernel"]["release"] %>
+Memory:             <%= (node["memory"]["total"].gsub(/\D/, "").to_f / 1024.0 / 1024.0).round(2) %> GB
+Role:               <%= node.roles.any? ? node.roles.join(", ") : node.run_list %>
+[1;34mChef Environment:   <%= node.chef_environment %>[0m
+<%= "\e[1;32mPlease note:        #{node["ubuntu-base"]["motd_note"]}\e[0m" unless node["ubuntu-base"]["motd_note"].empty? %>
