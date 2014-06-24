@@ -103,9 +103,9 @@ namespace "ubuntu-base" do
   motd_note ""
 
   packages %w[
-    curl wget htop vim psmisc lsof git-core man-db manpages procinfo sysstat
-    dstat mtr-tiny inotail realpath socat iftop iotop tree rsync screen gdb zip
-    libxml2-dev libxslt1-dev
+    curl dstat gdb git-core htop iftop inotail iotop libxml2-dev libxslt1-dev
+    lsof man-db manpages mtr-tiny procinfo psmisc realpath rsync socat sysstat
+    tree vim wget zip
   ]
 end
 
