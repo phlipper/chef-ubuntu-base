@@ -11,10 +11,10 @@ template "/etc/motd.chef" do
 end
 
 file "/etc/update-motd.d/00-header" do
-  content <<-EOC
-    #!/bin/sh
-    /usr/bin/test -f /etc/motd.chef && /bin/cat /etc/motd.chef
-  EOC
+  content [
+    "#!/bin/sh",
+    "/usr/bin/test -f /etc/motd.chef && /bin/cat /etc/motd.chef"
+  ].join("\n")
   owner "root"
   group "root"
   mode "0755"
