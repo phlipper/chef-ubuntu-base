@@ -4,7 +4,7 @@
 #
 
 include_recipe "openssh"
-include_recipe "ubuntu-base::iptables"
+include_recipe "afw"
 include_recipe "sudo"
 include_recipe "fail2ban"
 include_recipe "chkrootkit"

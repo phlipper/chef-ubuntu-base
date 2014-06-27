@@ -1,9 +1,0 @@
-# Allow ping or not
--A INPUT -p icmp -m icmp --icmp-type 8 -j <%= node["iptables"]["allow_ping"] ? "ACCEPT" : "REJECT" %>
-
-# filter ICMP netmask requests
--A INPUT -p icmp --icmp-type address-mask-request -j DROP
-
-# filter ICMP timestamp requests using the commands
--A INPUT -p icmp --icmp-type timestamp-request -j DROP
--A OUTPUT -p icmp --icmp-type timestamp-reply -j DROP

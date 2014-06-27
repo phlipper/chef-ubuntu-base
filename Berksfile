@@ -2,6 +2,9 @@ source "http://api.berkshelf.com"
 
 metadata
 
+cookbook "afw",
+  git: "https://github.com/jvehent/AFW.git"
+
 cookbook "brightbox-ruby",
   git: "https://github.com/phlipper/chef-brightbox-ruby.git"
 

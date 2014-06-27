@@ -16,6 +16,7 @@ The following platforms are supported by this cookbook, meaning that the recipes
 
 ### Cookbooks
 
+* [afw](https://github.com/jvehent/AFW)
 * [brightbox-ruby](https://github.com/phlipper/chef-brightbox-ruby)
 * [build-essential](http://github.com/opscode-cookbooks/build-essential)
 * [chef-client](http://github.com/opscode-cookbooks/chef-client)
@@ -26,7 +27,6 @@ The following platforms are supported by this cookbook, meaning that the recipes
 * [grc](https://github.com/phlipper/chef-grc)
 * [hostname](https://github.com/3ofcoins/chef-cookbook-hostname)
 * [htop](https://github.com/phlipper/chef-htop)
-* [iptables](https://github.com/phlipper/iptables)
 * [locale](http://github.com/hw-cookbooks/locale)
 * [logrotate](http://github.com/opscode-cookbooks/logrotate)
 * [logwatch](http://github.com/opscode-cookbooks/logwatch)
@@ -103,10 +103,27 @@ namespace "ubuntu-base" do
   motd_note ""
 
   packages %w[
-    curl wget htop vim psmisc lsof git-core man-db manpages procinfo sysstat
-    dstat mtr-tiny inotail realpath socat iftop iotop tree rsync screen gdb zip
-    libxml2-dev libxslt1-dev
+    curl dstat gdb git-core htop iftop inotail iotop libxml2-dev libxslt1-dev
+    lsof man-db manpages mtr-tiny procinfo psmisc realpath rsync socat sysstat
+    tree vim wget zip
   ]
+end
+
+# afw cookbook
+namespace "afw" do
+  enable_input_drop true
+  enable_output_drop false
+
+  namespace "rules" do
+    namespace "Inbound SSH" do
+      protocol "tcp"
+      direction "in"
+      interface "default"
+      user "sshd"
+      source "0.0.0.0/0"
+      dport "22"
+    end
+  end
 end
 
 # chef-client cookbook
@@ -132,12 +149,6 @@ end
 
 # hostname cookbook
 set_fqdn "*"
-
-# iptables cookbook
-namespace "iptables" do
-  allow_ping false
-  install_rules false
-end
 
 # locale cookbook
 namespace "locale" do
