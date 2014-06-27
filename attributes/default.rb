@@ -16,11 +16,6 @@ namespace "ubuntu-base" do
     "TMOUT" => "600"  # OpenSSH client timeout
   )
 
-  iptables_rules %w[
-    default_policy drop_garbage inbound_established outbound ssh loopback icmp
-    log_denied reject
-  ]
-
   motd_note ""
 
   packages %w[
