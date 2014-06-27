@@ -3,8 +3,9 @@ require "chef/sugar"
 # ubuntu-base
 namespace "ubuntu-base" do
   banned_packages %w[
-    friendly-recovery laptop-detect libx11-6 ntfs-3g os-prober powermgmt-base
-    ppp
+    crda friendly-recovery language-pack-gnome-en laptop-detect libx11-6 nano
+    nfs-common ntfs-3g os-prober powermgmt-base ppp rpcbind sgml-base usbutils
+    watershed whiptail wireless-regdb
   ]
 
   enable_minitest false
