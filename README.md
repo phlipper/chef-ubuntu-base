@@ -58,7 +58,6 @@ The following platforms are supported by this cookbook, meaning that the recipes
 * `default` - Default recipe
 * `development` - Install packages for development (ruby, nodejs, etc.)
 * `environment` - Configure system environment
-* `iptables` - Configure system firewall
 * `logging` - Configure system logging components
 * `mailer` - Configure system mail relay
 * `monitoring` - Configure system monitoring services
@@ -94,11 +93,6 @@ namespace "ubuntu-base" do
     "PATH" => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
     "TMOUT" => "600"  # OpenSSH client timeout
   )
-
-  iptables_rules %w[
-    default_policy drop_garbage inbound_established outbound ssh loopback icmp
-    log_denied reject
-  ]
 
   motd_note ""
 
